@@ -7,6 +7,14 @@
 <div class="container mt-4">
     <h2 class="mb-4">Manage Appointments</h2>
 
+    <!-- Section : Message d'erreur -->
+    <div class="text-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+
     <form method="post">
         <!-- Sélection du docteur -->
         <div class="form-group">
@@ -24,7 +32,6 @@
         <!-- Champ Patient -->
         @if (User.IsInRole("Admin"))
         {
-            <!-- L'admin peut choisir un patient -->
             <div class="form-group">
                 <label for="PatientId">Patient</label>
                 <select asp-for="Appointment.PatientId" class="form-control">
@@ -33,13 +40,13 @@
                     {
                         <option value="@patient.Id">@patient.UserName</option>
                     }
+                    }
                 </select>
                 <span asp-validation-for="Appointment.PatientId" class="text-danger"></span>
             </div>
         }
         else if (User.IsInRole("Patient"))
         {
-            <!-- Champ pré-rempli pour le patient connecté -->
             <div class="form-group">
                 <label for="PatientId">Patient</label>
                 <input class="form-control" asp-for="Appointment.PatientId" value="@Model.LoggedInPatient.Email" readonly />

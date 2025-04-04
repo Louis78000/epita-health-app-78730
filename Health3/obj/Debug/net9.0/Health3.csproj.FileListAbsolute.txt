@@ -405,3 +405,4 @@ C:\Users\louis\RiderProjects\Health3\Health3\bin\Debug\net9.0\runtimes\win\lib\n
 C:\Users\louis\RiderProjects\Health3\Health3\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\louis\RiderProjects\Health3\Health3\bin\Debug\net9.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
 C:\Users\louis\RiderProjects\Health3\Health3\bin\Debug\net9.0\app.db
+C:\Users\louis\RiderProjects\Health3\Health3\obj\Debug\net9.0\Health3.sourcelink.json
