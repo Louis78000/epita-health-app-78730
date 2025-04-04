@@ -1,0 +1,40 @@
+﻿@page
+@model Health3.Pages.Doctor.DashboardModel
+
+@{
+    ViewData["Title"] = "Doctor Dashboard";
+}
+
+<div class="container mt-4">
+    <h1 class="mb-4">Welcome, @Model.DoctorName!</h1>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Today's Appointments</h5>
+                    <p class="card-text">You have @Model.AppointmentCount appointments today.</p>
+                    <a href="/Appointments" class="btn btn-primary">View Appointments</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Patients</h5>
+                    <p class="card-text">Manage your patients' information.</p>
+                    <a href="/Patients" class="btn btn-secondary">View Patients</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Profile</h5>
+                    <p class="card-text">Update your profile and settings.</p>
+                    <a href="/Profile" class="btn btn-secondary">Edit Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

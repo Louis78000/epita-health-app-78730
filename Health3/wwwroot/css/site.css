@@ -1,0 +1,182 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-image: url('/Images/photo.jpeg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  
+}
+.text-center {
+  background-color: rgba(0, 0, 0, 0.6); /* Couleur noire avec transparence */
+  color: white; /* Texte blanc pour un bon contraste */
+  padding: 20px; /* Ajoute un peu d'espace autour du texte */
+  border-radius: 10px; /* Ajoute des coins arrondis */
+  max-width: 70%; /* Limite la largeur du texte */
+  margin: auto; /* Centre horizontalement */
+}
+.admin-buttons button {
+  margin: 10px; /* Ajoute de l'espace entre les boutons */
+  padding: 15px 20px; /* Augmente la taille des boutons */
+  font-size: 16px; /* Texte plus grand */
+  border-radius: 8px; /* Coins légèrement arrondis */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Effet d'ombre sous les boutons */
+  transition: transform 0.2s, background-color 0.2s; /* Animation au survol */
+}
+.admin-buttons button:hover {
+  transform: scale(1.05); /* Agrandit légèrement les boutons au survol */
+  background-color: #1a73e8; /* Change la couleur au survol */
+  color: white;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Couleur noire avec une opacité de 40% */
+  z-index: -1; /* Derrière tout le contenu */
+}
+.privacy-content {
+  background-color: rgba(0, 0, 0, 0.6); /* Fond noir semi-transparent */
+  color: white; /* Texte en blanc */
+  padding: 20px; /* Marges internes pour donner de l'espace */
+  border-radius: 10px; /* Coins arrondis */
+  max-width: 70%; /* Limiter la largeur pour une meilleure lisibilité */
+  margin: auto; /* Centrer le contenu */
+  text-align: center; /* Texte centré */
+}
+.privacy-buttons button {
+  margin: 10px;
+  padding: 15px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: #007bff; /* Bleu */
+  color: white;
+  border: none;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.privacy-buttons button:hover {
+  transform: scale(1.05);
+  background-color: #0056b3; /* Bleu plus foncé */
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+.calendar-container {
+  background-color: rgba(255, 255, 255, 0.9); /* Fond blanc légèrement transparent */
+  border: 2px solid #007bff; /* Bordure bleue */
+  border-radius: 15px; /* Coins arrondis */
+  padding: 20px; /* Espacement interne */
+  max-width: 90%; /* Largeur maximale */
+  margin: auto; /* Centrer le calendrier */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Ombre pour effet surélevé */
+}
+.calendar-header {
+  display: flex;
+  justify-content: space-between; /* Boutons et titre bien alignés */
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.calendar-header h2 {
+  font-size: 24px; /* Police plus grande */
+  color: #007bff; /* Couleur bleue pour le titre */
+}
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 colonnes */
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px; /* Texte lisible */
+  color: #007bff; /* Couleur des jours */
+  margin-bottom: 10px;
+}
+.calendar-dates {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 colonnes */
+  gap: 10px; /* Espacement entre les dates */
+  text-align: center;
+}
+
+.calendar-dates div {
+  padding: 15px;
+  background-color: #f8f9fa; /* Fond clair pour les cases */
+  border-radius: 5px; /* Coins arrondis */
+  font-size: 14px; /* Police des dates */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1); /* Légère ombre */
+}
+
+.calendar-dates .today {
+  background-color: #007bff; /* Couleur pour le jour actuel */
+  color: white; /* Texte blanc */
+  font-weight: bold;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4); /* Couche sombre derrière */
+  z-index: -1; /* Derrière tous les éléments */
+}
+.calendar-dates div:hover {
+  transform: scale(1.1); /* Agrandissement au survol */
+  background-color: #007bff; /* Change la couleur au survol */
+  color: white; /* Change la couleur du texte */
+  transition: transform 0.2s, background-color 0.2s;
+}
+.navbar {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #f39c12; /* Couleur dorée au survol */
+  text-decoration: underline; /* Souligne le lien au survol */
+}
+
+.btn-outline-light:hover {
+  background-color: #ecf0f1;
+  color: #2c3e50; /* Inversion des couleurs au survol */
+  border-color: #ecf0f1;
+}
+
+

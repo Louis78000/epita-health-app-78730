@@ -1,0 +1,41 @@
+﻿
+@page
+@model AddDoctorModel
+@using Microsoft.AspNetCore.Authorization
+@{
+    ViewData["Title"] = "Add Doctor";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Add a New Doctor</h2>
+    <button class="btn btn-secondary mt-3" onclick="location.href='/Admin/SeeDoctors'">See Doctors</button>
+    @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+    {
+        <div class="alert alert-success">
+            @Model.SuccessMessage
+        </div>
+    }
+
+    <form method="post">
+        
+        <div class="form-group">
+            <label for="FirstName">First Name</label>
+            <input asp-for="Doctor.FirstName" class="form-control" placeholder="Enter First Name" />
+            <span asp-validation-for="Doctor.FirstName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="LastName">Last Name</label>
+            <input asp-for="Doctor.LastName" class="form-control" placeholder="Enter Last Name" />
+            <span asp-validation-for="Doctor.LastName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="Email">Email</label>
+            <input asp-for="Doctor.Email" class="form-control" placeholder="Enter Email" />
+            <span asp-validation-for="Doctor.Email" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Save Doctor</button>
+    </form>
+</div>

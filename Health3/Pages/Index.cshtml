@@ -1,0 +1,53 @@
+﻿@page
+@model IndexModel
+@using System.Runtime.CompilerServices
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+
+@{
+    ViewData["Title"] = "Home page";
+
+    // Récupérer l'utilisateur actuellement connecté
+    var user = UserManager.GetUserAsync(User).Result;
+
+    // Vérifier si l'utilisateur a le rôle Admin
+    bool isAdmin = user != null && UserManager.IsInRoleAsync(user, "Admin").Result;
+    bool isDoctor = user != null && UserManager.IsInRoleAsync(user, "Doctor").Result;
+    bool isPatient = user != null && UserManager.IsInRoleAsync(user, "Patient").Result;
+    Console.WriteLine(isDoctor);
+    Console.WriteLine(isAdmin);
+    Console.WriteLine(isPatient);
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Welcome to the new Appointment System</p>
+
+    @if (isAdmin)
+    {
+        <div class="admin-buttons">
+            <button class="btn btn-primary" onclick="location.href='/Admin/AddDoctor'">Add Doctor</button>
+            <button class="btn btn-secondary" onclick="location.href='/Admin/SeeAppointments'">See Appointments</button>
+            <button class="btn btn-secondary" onclick="location.href='/Admin/ManageAppointments'">Manage Appointments</button>
+        </div>
+    }
+    else if (isDoctor)
+    {
+        <div class="doctor-buttons">
+            <button class="btn btn-secondary" onclick="location.href='/Admin/SeeAppointments'">See Appointments</button>
+        </div>
+    }
+    else if (isPatient)
+    {
+        <div class="patient-buttons">
+            <button class="btn btn-secondary" onclick="location.href='/Admin/ManageAppointments'">Manage Appointments</button>
+            <button class="btn btn-secondary" onclick="location.href='/Admin/SeeAppointments'">See Appointments</button>
+        </div>
+    }
+    else
+    {
+        <p>You do not have access to admin features.</p>
+    }
+</div>
+

@@ -1,0 +1,58 @@
+﻿@page
+@model ManageAppointmentsModel
+@{
+    ViewData["Title"] = "Manage Appointments";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Manage Appointments</h2>
+
+    <form method="post">
+        <!-- Sélection du docteur -->
+        <div class="form-group">
+            <label for="DoctorId">Doctor</label>
+            <select asp-for="Appointment.DoctorId" class="form-control">
+                <option value="">-- Select Doctor --</option>
+                @foreach (var doctor in Model.Doctors)
+                {
+                    <option value="@doctor.Id">@doctor.FirstName @doctor.LastName</option>
+                }
+            </select>
+            <span asp-validation-for="Appointment.DoctorId" class="text-danger"></span>
+        </div>
+
+        <!-- Champ Patient -->
+        @if (User.IsInRole("Admin"))
+        {
+            <!-- L'admin peut choisir un patient -->
+            <div class="form-group">
+                <label for="PatientId">Patient</label>
+                <select asp-for="Appointment.PatientId" class="form-control">
+                    <option value="">-- Select Patient --</option>
+                    @foreach (var patient in Model.Patients)
+                    {
+                        <option value="@patient.Id">@patient.UserName</option>
+                    }
+                </select>
+                <span asp-validation-for="Appointment.PatientId" class="text-danger"></span>
+            </div>
+        }
+        else if (User.IsInRole("Patient"))
+        {
+            <!-- Champ pré-rempli pour le patient connecté -->
+            <div class="form-group">
+                <label for="PatientId">Patient</label>
+                <input class="form-control" asp-for="Appointment.PatientId" value="@Model.LoggedInPatient.Email" readonly />
+            </div>
+        }
+
+        <!-- Sélection de la date du rendez-vous -->
+        <div class="form-group">
+            <label for="AppointmentDate">Appointment Date</label>
+            <input asp-for="Appointment.AppointmentDate" type="datetime-local" class="form-control" />
+            <span asp-validation-for="Appointment.AppointmentDate" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Save Appointment</button>
+    </form>
+</div>

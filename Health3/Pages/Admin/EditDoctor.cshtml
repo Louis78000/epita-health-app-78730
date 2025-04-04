@@ -1,0 +1,34 @@
+﻿@page
+@model EditDoctorModel
+@{
+    ViewData["Title"] = "Edit Doctor";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Edit Doctor</h2>
+
+    <form method="post">
+        <!-- Champ caché pour transmettre l'ID -->
+        <input type="hidden" asp-for="Doctor.Id" />
+
+        <div class="form-group">
+            <label for="FirstName">First Name</label>
+            <input asp-for="Doctor.FirstName" class="form-control" placeholder="Enter First Name" />
+            <span asp-validation-for="Doctor.FirstName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="LastName">Last Name</label>
+            <input asp-for="Doctor.LastName" class="form-control" placeholder="Enter Last Name" />
+            <span asp-validation-for="Doctor.LastName" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="PhoneNumber">Phone Number</label>
+            <input asp-for="Doctor.Email" class="form-control" placeholder="Enter Phone Number" />
+            <span asp-validation-for="Doctor.Email" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+    </form>
+</div>

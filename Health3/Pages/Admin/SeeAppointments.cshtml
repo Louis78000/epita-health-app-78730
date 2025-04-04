@@ -1,0 +1,61 @@
+﻿@page
+@model SeeAppointmentsModel
+@{
+    ViewData["Title"] = "See Appointments";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Appointments Calendar</h2> <!-- Centré pour meilleure esthétique -->
+
+    <div class="calendar-container">
+        <div id="calendar"></div> <!-- Conteneur pour le calendrier -->
+    </div>
+</div>
+
+@section Scripts {
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.10/index.global.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.10/index.global.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendar'); // Sélectionne le conteneur
+
+            if (calendarEl) {
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                    initialView: 'dayGridMonth', // Vue mensuelle par défaut
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+                    events: function (fetchInfo, successCallback, failureCallback) {
+                        fetch('/api/Appointments/GetAppointments') // Appelle l'API
+                            .then(response => response.json())
+                            .then(data => successCallback(data)) // Ajoute les événements au calendrier
+                            .catch(error => failureCallback(error)); // Gère les erreurs
+                    },
+                    eventClick: function (info) {
+                        if (confirm(`Voulez-vous supprimer le rendez-vous : ${info.event.title} ?`)) {
+                            fetch(`/api/Appointments/DeleteAppointment/${info.event.id}`, {
+                                method: 'DELETE'
+                            })
+                                .then(response => {
+                                    if (response.ok) {
+                                        info.event.remove(); // Supprime visuellement l'événement du calendrier
+                                        alert("Rendez-vous supprimé !");
+                                    } else {
+                                        alert("Erreur lors de la suppression.");
+                                    }
+                                })
+                                .catch(error => console.error("Erreur :", error));
+                        }
+                    }
+                });
+
+                calendar.render();
+            } else {
+                console.error("Élément avec l'ID 'calendar' introuvable.");
+            }
+        });
+    </script>
+}
+
