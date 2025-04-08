@@ -25,7 +25,7 @@ public class AppointmentsController : ControllerBase
         var user = await _userManager.GetUserAsync(User);
         if (user == null)
         {
-            return Unauthorized(); // Si l'utilisateur n'est pas connecté
+            return Unauthorized(); // If the user is not connected
         }
 
         var isDoctor = await _userManager.IsInRoleAsync(user, "Doctor");
@@ -34,7 +34,7 @@ public class AppointmentsController : ControllerBase
 
         if (isDoctor)
         {
-            // Filtrer pour afficher uniquement les rendez-vous du docteur connecté
+            //Only print appointments of the doctor connected
             query = query.Where(a => a.Doctor.Email == user.Email);
         }
 
@@ -44,11 +44,11 @@ public class AppointmentsController : ControllerBase
                 id = a.Id,
                 title = $"{a.PatientName} - Dr. {a.Doctor.FirstName} {a.Doctor.LastName}",
                 start = a.AppointmentDate.ToString("yyyy-MM-ddTHH:mm:ss"),
-                color = "green" // Couleur par défaut
+                color = "green" //Default color
             })
             .ToListAsync();
 
-        return Ok(appointments); // Retourne les rendez-vous filtrés
+        return Ok(appointments); // Return the filtered appointments
     }
 
     [HttpPost("AddAppointment")]

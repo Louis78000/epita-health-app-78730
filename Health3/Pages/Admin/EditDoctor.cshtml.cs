@@ -16,15 +16,15 @@ public class EditDoctorModel : PageModel
     }
 
     [BindProperty]
-    public Doctor Doctor { get; set; } // Propriété pour les données du docteur
+    public Doctor Doctor { get; set; } // Doctor's data
 
     public async Task<IActionResult> OnGetAsync(int id)
     {
-        // Récupérer le docteur à partir de la base de données
+        // Pick the doctor from the database
         Doctor = await _context.Doctors.FindAsync(id);
         if (Doctor == null)
         {
-            return NotFound(); // Retourne une erreur 404 si le docteur n'existe pas
+            return NotFound(); // return 404 error if the doctor do not exist
         }
 
         return Page();
@@ -35,23 +35,23 @@ public class EditDoctorModel : PageModel
         
         if (!ModelState.IsValid)
         {
-            return Page(); // Si le modèle est invalide, rester sur la page
+            return Page(); // if the model is invalid, stay on the page
         }
 
-        // Récupérer le docteur dans la base de données
+        // Pick the doctor from the database
         var doctorInDb = await _context.Doctors.FindAsync(Doctor.Id);
         if (doctorInDb == null)
         {
-            return NotFound(); // Retourne une erreur si le docteur n'existe pas
+            return NotFound(); // return 404 error if the doctor do not exist
         }
 
-        // Mettre à jour les informations du docteur
+        // Update doctor information
         doctorInDb.FirstName = Doctor.FirstName;
         doctorInDb.LastName = Doctor.LastName;
         doctorInDb.Email = Doctor.Email;
         await _context.SaveChangesAsync();
 
-        // Rediriger vers la page SeeDoctors après la sauvegarde
+        //Redirect to the SeeDoctors page after the save
         return RedirectToPage("/Admin/SeeDoctors");
     }
 }

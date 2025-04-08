@@ -14,7 +14,7 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Phone Number</th>
-            <th>Actions</th> <!-- Colonne pour les actions -->
+            <th>Actions</th> <!-- Column for actions -->
         </tr>
         </thead>
         <tbody>
@@ -25,12 +25,12 @@
                 <td>@doctor.LastName</td>
                 <td>@doctor.Email</td>
                 <td>
-                    <!-- Bouton Delete -->
+                    <!-- Delete button -->
                     <form method="post" asp-page-handler="Delete" asp-route-id="@doctor.Id" class="d-inline">
                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                     </form>
 
-                    <!-- Bouton Edit -->
+                    <!-- Edit button -->
                     <a asp-page="/Admin/EditDoctor" asp-route-id="@doctor.Id" class="btn btn-primary btn-sm">Edit</a>
 
                 </td>

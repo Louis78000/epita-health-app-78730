@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Health3.Pages.Doctor;
 
-[Authorize(Roles = "Doctor")] // Restreint l'accès uniquement aux docteurs
+[Authorize(Roles = "Doctor")] // Only doctors
 public class DashboardModel : PageModel
 {
     public string DoctorName { get; set; }
@@ -11,9 +11,9 @@ public class DashboardModel : PageModel
 
     public void OnGet()
     {
-        
-        // Simuler les données pour l'exemple
-        DoctorName = "Dr. Jean Dupont"; // Vous pouvez récupérer cela dynamiquement via User.Identity.Name
-        AppointmentCount = 5; // À remplacer par une requête réelle pour compter les rendez-vous
+
+        // Simulate datas for example
+        DoctorName = "Dr. Jean Dupont";
+        AppointmentCount = 5;
     }
 }

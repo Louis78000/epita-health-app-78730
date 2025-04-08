@@ -31,19 +31,19 @@ public class SeeAppointmentsModel : PageModel
             return;
         }
 
-        // Détecter si l'utilisateur connecté est docteur ou administrateur
+        // Detect what role is connected
         var isDoctor = await _userManager.IsInRoleAsync(user, "Doctor");
 
-        // Requête initiale
+        // Initial request
         IQueryable<Appointment> query = _context.Appointments.Include(a => a.Doctor);
 
         if (isDoctor)
         {
-            // Filtrer les rendez-vous pour ne montrer que ceux liés au docteur connecté
+            // Filter the appointments to show only the connected doctor's appointments.
             query = query.Where(a => a.Doctor.Email == user.Email);
         }
 
-        // Charger les rendez-vous avec le filtre appliqué
+        // Load appointments with the filter
         Appointments = await query
             .Select(a => new AppointmentViewModel
             {

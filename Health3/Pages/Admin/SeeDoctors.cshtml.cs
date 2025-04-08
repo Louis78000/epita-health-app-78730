@@ -21,13 +21,13 @@ public class SeeDoctorsModel : PageModel
 
     public async Task OnGetAsync()
     {
-        // Récupérer la liste des docteurs
+        // Pick the doctor's list
         Doctors = await _context.Doctors.ToListAsync();
     }
 
     public async Task<IActionResult> OnPostDeleteAsync(int id)
     {
-        // Trouver le docteur correspondant dans la base de données
+        // Find the doctor
         var doctor = await _context.Doctors.FindAsync(id);
 
         if (doctor != null)
@@ -36,7 +36,7 @@ public class SeeDoctorsModel : PageModel
             await _context.SaveChangesAsync();
         }
 
-        // Recharger la liste des docteurs après suppression
+        // Reload the list after deleting
         return RedirectToPage();
     }
 }

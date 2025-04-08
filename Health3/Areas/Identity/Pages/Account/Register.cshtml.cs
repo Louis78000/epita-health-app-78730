@@ -24,7 +24,7 @@ namespace Health3.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
-        private readonly ApplicationDbContext _context; // Injection de la base de données
+        private readonly ApplicationDbContext _context; 
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -32,7 +32,7 @@ namespace Health3.Areas.Identity.Pages.Account
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender,
-            ApplicationDbContext context) // Injectez ApplicationDbContext
+            ApplicationDbContext context) 
         {
             _userManager = userManager;
             _userStore = userStore;
@@ -40,7 +40,7 @@ namespace Health3.Areas.Identity.Pages.Account
             _signInManager = signInManager;
             _logger = logger;
             _emailSender = emailSender;
-            _context = context; // Initialisation de ApplicationDbContext
+            _context = context; 
         }
 
         [BindProperty]
@@ -54,7 +54,7 @@ namespace Health3.Areas.Identity.Pages.Account
         {
             [Required]
             [Display(Name = "Full Name")]
-            public string FullName { get; set; } // Champ pour Full Name
+            public string FullName { get; set; } // Full Name
 
             [Required]
             [EmailAddress]
@@ -96,7 +96,7 @@ namespace Health3.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    // Ajouter dans la table Patients
+                    // Add in the patient table
                     var newPatient = new Patient
                     {
                         FullName = Input.FullName,

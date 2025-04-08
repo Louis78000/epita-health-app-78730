@@ -4,12 +4,12 @@ namespace Health3.Services;
 
 public static class RoleInitializer
 {
-    // Méthode pour initialiser les rôles "Admin", "Doctor" et "Patient"
+    // Initialise the roles
     public static async Task SeedRoles(IServiceProvider serviceProvider)
     {
         var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-        // Liste des rôles à créer
+        // List to create
         var roles = new[] { "Admin", "Doctor", "Patient" };
 
         foreach (var role in roles)
@@ -26,7 +26,7 @@ public static class RoleInitializer
         var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
         var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-        // Vérifier si le rôle "Patient" existe, sinon le créer
+        // Verify is the role exist. If not, create one
         if (!await roleManager.RoleExistsAsync("Patient"))
         {
             await roleManager.CreateAsync(new IdentityRole("Patient"));
@@ -37,13 +37,13 @@ public static class RoleInitializer
         var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
         var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-        // Vérifier si le rôle "Admin" existe, sinon le créer
+        // Verify is the role exist. If not, create one
         if (!await roleManager.RoleExistsAsync("Admin"))
         {
             await roleManager.CreateAsync(new IdentityRole("Admin"));
         }
 
-        // Créer un utilisateur Admin par défaut s'il n'existe pas
+        // Verify is the role exist. If not, create one
         string adminEmail = "admin@example.com";
         string adminPassword = "Admin@1234";
         var adminUser = await userManager.FindByEmailAsync(adminEmail);
@@ -70,13 +70,13 @@ public static class RoleInitializer
         var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
         var userManager = serviceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
-        // Vérifier si le rôle "Doctor" existe, sinon le créer
+        // Verify is the role exist. If not, create one
         if (!await roleManager.RoleExistsAsync("Doctor"))
         {
             await roleManager.CreateAsync(new IdentityRole("Doctor"));
         }
 
-        // Créer un utilisateur Doctor par défaut s'il n'existe pas
+        // Verify is the role exist. If not, create one
         string doctorEmail = "doctor@example.com";
         string doctorPassword = "Doctor@1234";
         var doctorUser = await userManager.FindByEmailAsync(doctorEmail);

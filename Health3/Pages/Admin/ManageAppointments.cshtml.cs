@@ -34,16 +34,16 @@ public class ManageAppointmentsModel : PageModel
 
     public async Task OnGetAsync()
     {
-        // Initialiser Appointment si null
+        // Initialize Appointment if null
         if (Appointment == null)
         {
             Appointment = new AppointmentInputModel();
         }
 
-        // Charger la liste des docteurs
+        // Loading the doctor list
         Doctors = await _context.Doctors.ToListAsync();
 
-        // Identifier si l'utilisateur connecté est un patient
+        // Identify if the connected is a a patient
         if (User.IsInRole("Admin"))
         {
             Patients = await _context.Users.ToListAsync();
@@ -67,24 +67,24 @@ public class ManageAppointmentsModel : PageModel
             return Page();
         }
 
-        // Vérification des horaires pris
+        // Check the date
         var conflictingAppointment = await _context.Appointments
             .FirstOrDefaultAsync(a => a.DoctorId == Appointment.DoctorId &&
                                       a.AppointmentDate == Appointment.AppointmentDate);
 
         if (conflictingAppointment != null)
         {
-            // Ajouter un message d'erreur
+            // Add an error message
             ModelState.AddModelError(string.Empty, "This appointment slot is already taken by the selected doctor.");
             Doctors = await _context.Doctors.ToListAsync();
             if (User.IsInRole("Admin"))
             {
                 Patients = await _context.Users.ToListAsync();
             }
-            return Page(); // Renvoie la page avec le message d'erreur
+            return Page(); // Redirect to the page with the message
         }
 
-        // Définir le patient selon le rôle de l'utilisateur connecté
+        // Define the patient with the connected
         var patientId = User.IsInRole("Patient")
             ? _userManager.GetUserId(User)
             : Appointment.PatientId;

@@ -7,7 +7,7 @@
 <div class="container mt-4">
     <h2 class="mb-4">Manage Appointments</h2>
 
-    <!-- Section : Message d'erreur -->
+    <!-- Error message section -->
     <div class="text-danger">
         @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
         {
@@ -16,7 +16,7 @@
     </div>
 
     <form method="post">
-        <!-- Sélection du docteur -->
+        <!-- Doctor selection -->
         <div class="form-group">
             <label for="DoctorId">Doctor</label>
             <select asp-for="Appointment.DoctorId" class="form-control">
@@ -29,7 +29,7 @@
             <span asp-validation-for="Appointment.DoctorId" class="text-danger"></span>
         </div>
 
-        <!-- Champ Patient -->
+        <!-- Patient -->
         @if (User.IsInRole("Admin"))
         {
             <div class="form-group">
@@ -53,7 +53,7 @@
             </div>
         }
 
-        <!-- Sélection de la date du rendez-vous -->
+        <!-- Selecting date -->
         <div class="form-group">
             <label for="AppointmentDate">Appointment Date</label>
             <input asp-for="Appointment.AppointmentDate" type="datetime-local" class="form-control" />

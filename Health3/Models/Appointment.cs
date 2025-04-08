@@ -2,10 +2,10 @@
 
 public class Appointment
 {
-    public int Id { get; set; } // Clé primaire
-    public int DoctorId { get; set; } // Clé étrangère vers le docteur
+    public int Id { get; set; } // Primary key
+    public int DoctorId { get; set; } // Stranger key to the doctor
     public string PatientName { get; set; }
     public DateTime AppointmentDate { get; set; }
 
-    public Doctor Doctor { get; set; } // Navigation vers le docteur
+    public Doctor Doctor { get; set; } // Navigation to the doctor
 }

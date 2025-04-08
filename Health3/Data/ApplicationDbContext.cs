@@ -16,10 +16,10 @@ public class ApplicationDbContext : IdentityDbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<Appointment>()
-            .HasOne(a => a.Doctor) // Relation vers Doctor
-            .WithMany()            // Pas de navigation inverse
+            .HasOne(a => a.Doctor) // Relation to the Doctor
+            .WithMany()            //
             .HasForeignKey(a => a.DoctorId)
-            .OnDelete(DeleteBehavior.Cascade); // Comportement en cas de suppression
+            .OnDelete(DeleteBehavior.Cascade); // In case of delete
     }
 
     public DbSet<Doctor> Doctors { get; set; }

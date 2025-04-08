@@ -13,23 +13,22 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddRoles<IdentityRole>() // Ajoute la prise en charge des rôles
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// Crée les rôles par défaut, y compris le rôle "Patient"
+// Create default roles
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
 
-    // Initialiser les rôles (Admin, Doctor, Patient)
-    await RoleInitializer.SeedRoles(services); // Inclut la logique pour ajouter le rôle "Patient"
+    // Initialize roles
+    await RoleInitializer.SeedRoles(services); // Add roles
 }
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
